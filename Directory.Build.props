@@ -1,0 +1,56 @@
+<Project>
+  <PropertyGroup Label="Core Framework Settings">
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsNotAsErrors>CS1591</WarningsNotAsErrors> <!-- Missing XML documentation -->
+  </PropertyGroup>
+
+  <PropertyGroup Label="Code Analysis and Quality">
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <RunCodeAnalysis>false</RunCodeAnalysis> <!-- Disabled to avoid double-analysis -->
+    <WarningsAsErrors>nullable</WarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Build Output and Debugging">
+    <DebugType>portable</DebugType>
+    <Deterministic>true</Deterministic>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Performance and Optimization">
+    <PublishReadyToRun Condition="'$(Configuration)' == 'Release'">true</PublishReadyToRun>
+    <IsAotCompatible>true</IsAotCompatible>
+    <OptimizationPreference Condition="'$(Configuration)' == 'Release'">Size</OptimizationPreference>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Documentation and Packaging">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Company>Witold Woźniak</Company>
+    <Product>Stickler .NET Architectural Testing Library</Product>
+    <Copyright>Copyright © 2025 Witold Woźniak</Copyright>
+    <EnablePackageValidation>true</EnablePackageValidation>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Source Link Configuration" Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
+  </ItemGroup>
+
+  <PropertyGroup Label="Conditional Compilation Symbols">
+    <DefineConstants Condition="'$(Configuration)' == 'Debug'">DEBUG;TRACE</DefineConstants>
+    <DefineConstants Condition="'$(Configuration)' == 'Release'">TRACE</DefineConstants>
+  </PropertyGroup>
+  <Import Project="Directory.Build.local.props" Condition="Exists('Directory.Build.local.props')"/>
+
+</Project>

@@ -1,0 +1,80 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup Label="Project Identity">
+    <AssemblyName>Stickler</AssemblyName>
+    <RootNamespace>Stickler</RootNamespace>
+    <Version>0.1.0-alpha</Version>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <FileVersion>0.1.0.0</FileVersion>
+    <PackageId>Stickler</PackageId>
+    <Title>Stickler - .NET Architectural Testing</Title>
+    <Description>High-performance .NET library for testing and enforcing software architecture rules with a fluent API.</Description>
+    <PackageTags>architecture;testing;dotnet;code-analysis;clean-architecture;solid;dependency-analysis</PackageTags>
+    <PackageProjectUrl>https://github.com/vitcosoft/Stickler</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/vitcosoft/Stickler</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>See CHANGELOG.md for detailed release notes.</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Library-Specific Settings">
+    <OutputType>Library</OutputType>
+    <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
+    <SignAssembly>false</SignAssembly> <!-- Enable this later with proper key management -->
+    <IsTrimmable>true</IsTrimmable>
+    <CLSCompliant>true</CLSCompliant>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Code Quality Overrides">
+    <NoWarn Condition="'$(Configuration)' == 'Debug'">$(NoWarn);CS1591</NoWarn>
+    <NoWarn>$(NoWarn);CA1303</NoWarn>
+    <NoWarn>$(NoWarn);CA2007</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup Label="Core Dependencies">
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.Reflection.Metadata" Version="9.0.8"/>
+    <PackageReference Include="System.Memory" Version="4.6.3"/>
+  </ItemGroup>
+
+  <ItemGroup Label="Development Dependencies">
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.12" Condition="'$(Configuration)' == 'Release'"/>
+  </ItemGroup>
+
+  <ItemGroup Label="Package Content">
+    <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="\"/>
+    <None Include="..\..\CHANGELOG.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>DEBUG;TRACE;CONTRACTS_FULL</DefineConstants>
+    <Optimize>false</Optimize>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+    <TieredCompilation>true</TieredCompilation>
+    <TieredCompilationQuickJit>false</TieredCompilationQuickJit>
+  </PropertyGroup>
+
+  <Target Name="ValidatePackageMetadata" BeforeTargets="GenerateNuspec" Condition="'$(GeneratePackageOnBuild)' == 'true'">
+    <Error Condition="'$(PackageProjectUrl)' == ''" Text="PackageProjectUrl is required for NuGet packages"/>
+    <Error Condition="'$(RepositoryUrl)' == ''" Text="RepositoryUrl is required for NuGet packages"/>
+    <Error Condition="'$(PackageLicenseExpression)' == ''" Text="PackageLicenseExpression is required for NuGet packages"/>
+  </Target>
+
+  <Target Name="ValidateCodeFormatting" BeforeTargets="Build" Condition="'$(CI)' == 'true'">
+    <Exec Command="dotnet format --verify-no-changes --verbosity diagnostic"
+          ContinueOnError="false"
+          IgnoreExitCode="false"/>
+  </Target>
+
+</Project>
