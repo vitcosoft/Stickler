@@ -5,7 +5,7 @@ namespace Stickler.TestInfrastructure;
 /// <summary>
 ///     Console application entry point for generating test assemblies during build.
 /// </summary>
-internal class Program
+internal static class Program
 {
     /// <summary>
     ///     Entry point that generates test assemblies to the specified output directory.

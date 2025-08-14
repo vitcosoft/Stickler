@@ -4,13 +4,14 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-
     <IsPackable>false</IsPackable>
-    <IsTestProject>true</IsTestProject>
-    <RootNamespace>Performance</RootNamespace>
+    <IsTestProject>false</IsTestProject>
+    <OutputType>Exe</OutputType>
+    <StartupObject>Stickler.Performance.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.15.2"/>
     <PackageReference Include="FluentAssertions" Version="8.6.0"/>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1"/>
     <PackageReference Include="xunit" Version="2.9.3"/>
@@ -19,6 +20,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <StartupObject>Stickler.Performance.Program</StartupObject>
+  </PropertyGroup>
 
   <ItemGroup>
     <Using Include="Xunit"/>
