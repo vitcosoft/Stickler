@@ -19,10 +19,15 @@
 
   <PropertyGroup Label="Library-Specific Settings">
     <OutputType>Library</OutputType>
-    <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
-    <SignAssembly>false</SignAssembly> <!-- Enable this later with proper key management -->
+    <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">false</GeneratePackageOnBuild>
+    <SignAssembly>false</SignAssembly>
     <IsTrimmable>true</IsTrimmable>
     <CLSCompliant>true</CLSCompliant>
+  </PropertyGroup>
+
+  <PropertyGroup Label="CI/CD Package Settings" Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Label="Code Quality Overrides">
