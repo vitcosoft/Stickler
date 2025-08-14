@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Stickler\Stickler.csproj"/>
+    <ProjectReference Include="..\Stickler.TestInfrastructure\Stickler.TestInfrastructure.csproj"/>
   </ItemGroup>
 
 </Project>

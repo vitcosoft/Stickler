@@ -1,0 +1,16 @@
+﻿<Project>
+  <Target Name="GenerateTestAssemblies" BeforeTargets="Build">
+    <PropertyGroup>
+      <TestAssemblyOutputDir>$(OutputPath)TestAssemblies</TestAssemblyOutputDir>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <TestAssemblyFiles Include="$(TestAssemblyOutputDir)\*.dll"/>
+    </ItemGroup>
+
+    <Message Text="Generating test assemblies in $(TestAssemblyOutputDir)" Importance="high"/>
+
+    <Exec Command="dotnet run --project $(MSBuildProjectDirectory) -- &quot;$(TestAssemblyOutputDir)&quot;"
+          Condition="!Exists('$(TestAssemblyOutputDir)\TestAssembly.Small.dll')"/>
+  </Target>
+</Project>
