@@ -22,7 +22,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
-  <PropertyGroup Label="Performance and Optimization">
+  <PropertyGroup Label="Stickler.Performance and Optimization">
     <PublishReadyToRun Condition="'$(Configuration)' == 'Release'">true</PublishReadyToRun>
     <IsAotCompatible>true</IsAotCompatible>
     <OptimizationPreference Condition="'$(Configuration)' == 'Release'">Size</OptimizationPreference>
