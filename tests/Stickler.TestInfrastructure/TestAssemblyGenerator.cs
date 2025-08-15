@@ -178,10 +178,7 @@ public static class TestAssemblyGenerator
 
             string isStatic = i % 10 == 0 ? "static " : "";
             string isVirtual = i % 7 == 0 && string.IsNullOrEmpty(isStatic) ? "virtual " : "";
-            string isOverride =
-                i % 12 == 0 && string.IsNullOrEmpty(isStatic) && string.IsNullOrEmpty(isVirtual)
-                    ? "override "
-                    : "";
+            const string isOverride = "";
 
             string returnType = (i % 4) switch
             {
@@ -278,11 +275,7 @@ public static class TestAssemblyGenerator
 
         return
         [
-            MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
-            MetadataReference.CreateFromFile(typeof(Console).Assembly.Location),
-            MetadataReference.CreateFromFile(typeof(List<>).Assembly.Location),
-            MetadataReference.CreateFromFile(Path.Combine(assemblyPath, "System.Runtime.dll")),
-            MetadataReference.CreateFromFile(Path.Combine(assemblyPath, "System.Collections.dll"))
+            MetadataReference.CreateFromFile(typeof(object).Assembly.Location)
         ];
     }
 

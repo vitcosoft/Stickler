@@ -21,11 +21,6 @@
     </PackageReference>
   </ItemGroup>
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <StartupObject>Stickler.Performance.Program</StartupObject>
-  </PropertyGroup>
-
   <ItemGroup>
     <Using Include="Xunit"/>
   </ItemGroup>
