@@ -260,23 +260,21 @@ public static class TestAssemblyGenerator
         }
     }
 
-    [RequiresAssemblyFiles("Calls System.Reflection.Assembly.Location")]
+    [RequiresAssemblyFiles(
+        "Reads runtime assembly locations to provide references for compilation.")]
     private static MetadataReference[] GetCompilationReferences()
     {
-        string? assemblyPath = Path.GetDirectoryName(typeof(object).Assembly.Location);
-
-        if (string.IsNullOrEmpty(assemblyPath))
+        if (AppContext.GetData("TRUSTED_PLATFORM_ASSEMBLIES") is string trustedAssemblies)
         {
-            return AppDomain.CurrentDomain.GetAssemblies()
-                .Where(a => !a.IsDynamic && !string.IsNullOrEmpty(a.Location))
-                .Select(a => MetadataReference.CreateFromFile(a.Location))
+            return trustedAssemblies.Split(Path.PathSeparator)
+                .Select(path => MetadataReference.CreateFromFile(path))
                 .ToArray<MetadataReference>();
         }
 
-        return
-        [
-            MetadataReference.CreateFromFile(typeof(object).Assembly.Location)
-        ];
+        return AppDomain.CurrentDomain.GetAssemblies()
+            .Where(a => !a.IsDynamic && !string.IsNullOrEmpty(a.Location))
+            .Select(a => MetadataReference.CreateFromFile(a.Location))
+            .ToArray<MetadataReference>();
     }
 
     /// <summary>
