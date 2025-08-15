@@ -15,6 +15,7 @@ public static class TestAssemblyGenerator
     private const int AbstractClassFrequency = 15;
     private const int SealedClassFrequency = 20;
     private const int InterfaceImplementationFrequency = 5;
+    private static readonly object _compilationLock = new object();
 
     /// <summary>
     ///     Small test assembly with 50 types for basic testing scenarios.
@@ -52,12 +53,12 @@ public static class TestAssemblyGenerator
         "Calls Stickler.TestInfrastructure.TestAssemblyGenerator.CompileToAssembly(String, String)")]
     private static void GenerateTestAssembly(AssemblySpec spec, string outputDirectory)
     {
-        string sourceCode = GenerateSourceCode(spec.Name, spec.TypeCount);
-        string assemblyPath = Path.Combine(outputDirectory, spec.OutputPath);
-
-        CompileToAssembly(sourceCode, assemblyPath);
-
-        Console.WriteLine($"Generated {spec.Name} with {spec.TypeCount} types at {assemblyPath}");
+        lock (_compilationLock) // Protect compilation and file I/O
+        {
+            var sourceCode = GenerateSourceCode(spec.Name, spec.TypeCount);
+            var assemblyPath = Path.Combine(outputDirectory, spec.OutputPath);
+            CompileToAssembly(sourceCode, assemblyPath);
+        }
     }
 
     private static string GenerateSourceCode(string assemblyName, int typeCount)
