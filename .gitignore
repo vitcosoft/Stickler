@@ -245,3 +245,6 @@ FodyWeavers.xsd
 *.msm
 *.msp
 *.sln.iml
+**/TestOutput/
+**/*TestAssembly*.dll
+tests/**/TestAssemblies/

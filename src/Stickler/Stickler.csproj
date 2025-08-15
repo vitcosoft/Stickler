@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup Label="Project Identity">
     <AssemblyName>Stickler</AssemblyName>
     <RootNamespace>Stickler</RootNamespace>
@@ -19,10 +19,15 @@
 
   <PropertyGroup Label="Library-Specific Settings">
     <OutputType>Library</OutputType>
-    <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
-    <SignAssembly>false</SignAssembly> <!-- Enable this later with proper key management -->
+    <GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">false</GeneratePackageOnBuild>
+    <SignAssembly>false</SignAssembly>
     <IsTrimmable>true</IsTrimmable>
     <CLSCompliant>true</CLSCompliant>
+  </PropertyGroup>
+
+  <PropertyGroup Label="CI/CD Package Settings" Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Label="Code Quality Overrides">
@@ -47,7 +52,6 @@
   <ItemGroup Label="Package Content">
     <None Include="..\..\README.md" Pack="true" PackagePath="\"/>
     <None Include="..\..\LICENSE" Pack="true" PackagePath="\"/>
-    <None Include="..\..\CHANGELOG.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">

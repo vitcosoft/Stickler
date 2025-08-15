@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{236AE6D0-195A-4046-99A0-FF04D509956A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stickler", "src\Stickler\Stickler.csproj", "{6095EBDE-AC62-4A7B-B8EC-5E1651BB951A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stickler", "src\Stickler\Stickler.csproj", "{59AE511E-10AC-4D52-A46A-75D04867694C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stickler.Unit", "tests\Stickler.Unit\Stickler.Unit.csproj", "{ADF628F7-2EA5-4AC3-9D96-3CF63332B006}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stickler.Integration", "tests\Stickler.Integration\Stickler.Integration.csproj", "{507A90CF-C8A5-491C-A48D-EF00EF65E645}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stickler.Performance", "tests\Stickler.Performance\Stickler.Performance.csproj", "{08B604D1-D142-464A-ADC3-A07676811D5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stickler.TestInfrastructure", "tests\Stickler.TestInfrastructure\Stickler.TestInfrastructure.csproj", "{EA90CCBC-EE06-446E-873B-65DCD23A2ABD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,12 +22,25 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{59AE511E-10AC-4D52-A46A-75D04867694C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59AE511E-10AC-4D52-A46A-75D04867694C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59AE511E-10AC-4D52-A46A-75D04867694C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59AE511E-10AC-4D52-A46A-75D04867694C}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{59AE511E-10AC-4D52-A46A-75D04867694C} = {236AE6D0-195A-4046-99A0-FF04D509956A}
+		{6095EBDE-AC62-4A7B-B8EC-5E1651BB951A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6095EBDE-AC62-4A7B-B8EC-5E1651BB951A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6095EBDE-AC62-4A7B-B8EC-5E1651BB951A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6095EBDE-AC62-4A7B-B8EC-5E1651BB951A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADF628F7-2EA5-4AC3-9D96-3CF63332B006}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADF628F7-2EA5-4AC3-9D96-3CF63332B006}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADF628F7-2EA5-4AC3-9D96-3CF63332B006}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADF628F7-2EA5-4AC3-9D96-3CF63332B006}.Release|Any CPU.Build.0 = Release|Any CPU
+		{507A90CF-C8A5-491C-A48D-EF00EF65E645}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{507A90CF-C8A5-491C-A48D-EF00EF65E645}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{507A90CF-C8A5-491C-A48D-EF00EF65E645}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{507A90CF-C8A5-491C-A48D-EF00EF65E645}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08B604D1-D142-464A-ADC3-A07676811D5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08B604D1-D142-464A-ADC3-A07676811D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08B604D1-D142-464A-ADC3-A07676811D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08B604D1-D142-464A-ADC3-A07676811D5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA90CCBC-EE06-446E-873B-65DCD23A2ABD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA90CCBC-EE06-446E-873B-65DCD23A2ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA90CCBC-EE06-446E-873B-65DCD23A2ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA90CCBC-EE06-446E-873B-65DCD23A2ABD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
